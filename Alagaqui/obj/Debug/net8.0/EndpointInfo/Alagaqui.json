@@ -1,0 +1,1676 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "API Alagaqui",
+    "description": "API para Monitoramento Colaborativo de Inundações Urbanas",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Alerta": {
+      "get": {
+        "tags": [
+          "Alerta"
+        ],
+        "summary": "Lista todos os alertas",
+        "description": "Retorna todos os alertas registrados no sistema.",
+        "responses": {
+          "200": {
+            "description": "Lista obtida com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlertaEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlertaEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlertaEntity"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum alerta encontrado"
+          },
+          "400": {
+            "description": "Erro ao obter os dados"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Alerta"
+        ],
+        "summary": "Cadastra um novo alerta",
+        "description": "Cria um novo alerta com base nas informações fornecidas.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Alerta criado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao inserir o alerta"
+          }
+        }
+      }
+    },
+    "/api/Alerta/{id}": {
+      "get": {
+        "tags": [
+          "Alerta"
+        ],
+        "summary": "Obtém um alerta específico",
+        "description": "Retorna os detalhes de um alerta com base no ID informado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alerta encontrado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Alerta não encontrado"
+          },
+          "400": {
+            "description": "Erro ao obter o alerta"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Alerta"
+        ],
+        "summary": "Atualiza um alerta existente",
+        "description": "Atualiza os dados de um alerta com base no ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlertaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Alerta atualizado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao atualizar o alerta"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Alerta"
+        ],
+        "summary": "Remove um alerta",
+        "description": "Remove um alerta do sistema com base no ID informado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alerta removido com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao excluir o alerta"
+          }
+        }
+      }
+    },
+    "/api/Localizacao": {
+      "get": {
+        "tags": [
+          "Localizacao"
+        ],
+        "summary": "Lista todas as localizações",
+        "description": "Retorna uma lista de todas as localizações cadastradas.",
+        "responses": {
+          "200": {
+            "description": "Lista obtida com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocalizacaoEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocalizacaoEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocalizacaoEntity"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhuma localização encontrada"
+          },
+          "400": {
+            "description": "Erro ao obter os dados"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Localizacao"
+        ],
+        "summary": "Cadastra uma nova localização",
+        "description": "Cria uma nova localização com base nas informações fornecidas.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalizacaoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalizacaoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalizacaoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Localização criada com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao inserir a localização"
+          }
+        }
+      }
+    },
+    "/api/Localizacao/{id}": {
+      "get": {
+        "tags": [
+          "Localizacao"
+        ],
+        "summary": "Obtém uma localização específica",
+        "description": "Retorna os detalhes de uma localização com base no ID informado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Localização encontrada com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Localização não encontrada"
+          },
+          "400": {
+            "description": "Erro ao obter a localização"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Localizacao"
+        ],
+        "summary": "Atualiza uma localização existente",
+        "description": "Atualiza os dados de uma localização com base no ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalizacaoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalizacaoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalizacaoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Localização atualizada com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha para atualizar a localização"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Localizacao"
+        ],
+        "summary": "Remove uma localização existente",
+        "description": "Remove os dados de uma localização com base no ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Localização removida com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizacaoEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao excluir a localização"
+          }
+        }
+      }
+    },
+    "/api/Ocorrencia": {
+      "get": {
+        "tags": [
+          "Ocorrencia"
+        ],
+        "summary": "Lista todas as ocorrências",
+        "description": "Retorna todas as ocorrências cadastradas.",
+        "responses": {
+          "200": {
+            "description": "Lista obtida com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OcorrenciaEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OcorrenciaEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OcorrenciaEntity"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhuma ocorrência encontrada"
+          },
+          "400": {
+            "description": "Erro ao obter os dados"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ocorrencia"
+        ],
+        "summary": "Cadastra uma nova ocorrência",
+        "description": "Cria uma nova ocorrência com base nas informações fornecidas.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OcorrenciaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OcorrenciaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OcorrenciaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ocorrência criada com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao inserir a ocorrência"
+          }
+        }
+      }
+    },
+    "/api/Ocorrencia/{id}": {
+      "get": {
+        "tags": [
+          "Ocorrencia"
+        ],
+        "summary": "Obtém uma ocorrência específica",
+        "description": "Retorna os detalhes de uma ocorrência com base no ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ocorrência encontrada com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Ocorrência não encontrada"
+          },
+          "400": {
+            "description": "Erro ao obter a ocorrência"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Ocorrencia"
+        ],
+        "summary": "Atualiza uma ocorrência",
+        "description": "Atualiza os dados de uma ocorrência existente com base no ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OcorrenciaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OcorrenciaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OcorrenciaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ocorrência atualizada com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao atualizar a ocorrência"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Ocorrencia"
+        ],
+        "summary": "Exclui uma ocorrência",
+        "description": "Remove uma ocorrência com base no ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ocorrência removida com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OcorrenciaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao excluir a ocorrência"
+          }
+        }
+      }
+    },
+    "/api/TipoAlerta": {
+      "get": {
+        "tags": [
+          "TipoAlerta"
+        ],
+        "summary": "Lista todos os tipos de alerta",
+        "description": "Retorna uma lista de todos os tipos de alerta disponíveis.",
+        "responses": {
+          "200": {
+            "description": "Lista obtida com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TipoAlertaEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TipoAlertaEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TipoAlertaEntity"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum tipo de alerta encontrado"
+          },
+          "400": {
+            "description": "Erro ao obter os dados"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TipoAlerta"
+        ],
+        "summary": "Cadastra um novo tipo de alerta",
+        "description": "Cria um novo tipo de alerta com base nas informações fornecidas.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoAlertaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoAlertaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoAlertaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tipo de alerta criado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao inserir o tipo de alerta"
+          }
+        }
+      }
+    },
+    "/api/TipoAlerta/{id}": {
+      "get": {
+        "tags": [
+          "TipoAlerta"
+        ],
+        "summary": "Obtém um tipo de alerta",
+        "description": "Retorna os dados de um tipo de alerta específico com base no ID informado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tipo de alerta encontrado",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Tipo de alerta não encontrado"
+          },
+          "400": {
+            "description": "Erro ao obter o tipo de alerta"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TipoAlerta"
+        ],
+        "summary": "Atualiza um tipo de alerta",
+        "description": "Atualiza os dados de um tipo de alerta existente com base no ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoAlertaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoAlertaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoAlertaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tipo de alerta atualizado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao atualizar o tipo de alerta"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TipoAlerta"
+        ],
+        "summary": "Exclui um tipo de alerta",
+        "description": "Remove um tipo de alerta do sistema com base no ID informado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tipo de alerta removido com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoAlertaEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao excluir o tipo de alerta"
+          }
+        }
+      }
+    },
+    "/api/TipoAlerta/com-alertas": {
+      "get": {
+        "tags": [
+          "TipoAlerta"
+        ],
+        "summary": "Lista todos os tipos de alerta com seus alertas",
+        "description": "Retorna todos os tipos de alerta cadastrados, incluindo os alertas associados a cada tipo.",
+        "responses": {
+          "200": {
+            "description": "Lista obtida com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TipoAlertaEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TipoAlertaEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TipoAlertaEntity"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum tipo de alerta encontrado"
+          },
+          "400": {
+            "description": "Erro ao obter os dados",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Usuario": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Lista todos os usuários",
+        "description": "Retorna uma lista completa de todos os usuários cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Lista obtida com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UsuarioEntity"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum usuário encontrado"
+          },
+          "400": {
+            "description": "Erro ao obter os dados"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Cadastra um novo usuário",
+        "description": "Cria um novo usuário com base nas informações fornecidas.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário criado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao inserir o usuário"
+          }
+        }
+      }
+    },
+    "/api/Usuario/{id}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Obtém um usuário específico",
+        "description": "Retorna os detalhes de um usuário com base no ID informado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "400": {
+            "description": "Erro ao obter o usuário"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Atualiza um usuário existente",
+        "description": "Atualiza as informações de um usuário com base no ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha para atualizar o usuário"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Remove um usuário existente",
+        "description": "Remove as informações de um usuário com base no ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário removido com sucesso",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao excluir o usuário"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AlertaDto": {
+        "required": [
+          "dataHoraCriacaoAlerta",
+          "idOcorrenciaRelacionada",
+          "idTipoAlerta",
+          "mensagemAlerta",
+          "resolvidoAlerta"
+        ],
+        "type": "object",
+        "properties": {
+          "idAlerta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idOcorrenciaRelacionada": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idTipoAlerta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mensagemAlerta": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataHoraCriacaoAlerta": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "resolvidoAlerta": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlertaEntity": {
+        "required": [
+          "dataHoraCriacaoAlerta",
+          "idOcorrenciaRelacionada",
+          "idTipoAlerta",
+          "mensagemAlerta",
+          "resolvidoAlerta"
+        ],
+        "type": "object",
+        "properties": {
+          "idAlerta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idOcorrenciaRelacionada": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idTipoAlerta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mensagemAlerta": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataHoraCriacaoAlerta": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "resolvidoAlerta": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocalizacaoDto": {
+        "required": [
+          "latitude",
+          "longitude",
+          "nomeLocalizacao"
+        ],
+        "type": "object",
+        "properties": {
+          "idLocalizacao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nomeLocalizacao": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocalizacaoEntity": {
+        "required": [
+          "latitude",
+          "longitude",
+          "nomeLocalizacao"
+        ],
+        "type": "object",
+        "properties": {
+          "idLocalizacao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nomeLocalizacao": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OcorrenciaDto": {
+        "required": [
+          "dataHoraOcorrencia",
+          "descricao",
+          "idLocalizacao",
+          "idUsuario",
+          "titulo"
+        ],
+        "type": "object",
+        "properties": {
+          "idOcorrencia": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idUsuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idLocalizacao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "titulo": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "descricao": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataHoraOcorrencia": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OcorrenciaEntity": {
+        "required": [
+          "dataHoraOcorrencia",
+          "descricao",
+          "idLocalizacao",
+          "idUsuario",
+          "titulo"
+        ],
+        "type": "object",
+        "properties": {
+          "idOcorrencia": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idUsuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idLocalizacao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "titulo": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "descricao": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataHoraOcorrencia": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "TipoAlertaDto": {
+        "required": [
+          "descricaoTipoAlerta"
+        ],
+        "type": "object",
+        "properties": {
+          "idTipoAlerta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descricaoTipoAlerta": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TipoAlertaEntity": {
+        "required": [
+          "descricaoTipoAlerta"
+        ],
+        "type": "object",
+        "properties": {
+          "idTipoAlerta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "descricaoTipoAlerta": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "alertas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlertaEntity"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsuarioDto": {
+        "required": [
+          "dataUltimaCriacaoRelato",
+          "emailUsuario",
+          "nomeUsuario",
+          "senhaUsuario"
+        ],
+        "type": "object",
+        "properties": {
+          "idUsuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nomeUsuario": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "emailUsuario": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "senhaUsuario": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataUltimaCriacaoRelato": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsuarioEntity": {
+        "required": [
+          "dataUltimaCriacaoRelato",
+          "emailUsuario",
+          "nomeUsuario",
+          "senhaUsuario"
+        ],
+        "type": "object",
+        "properties": {
+          "idUsuario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nomeUsuario": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "emailUsuario": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
+          },
+          "senhaUsuario": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataUltimaCriacaoRelato": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
