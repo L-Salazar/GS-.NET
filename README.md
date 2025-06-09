@@ -13,7 +13,7 @@ https://www.youtube.com/watch?v=GR-xSpwOhPg&ab_channel=Guilhermedasilva - Video 
 
 # 🌧️ Alagaqui API - .NET Core + Oracle
 
-Este projeto tem como objetivo criar uma solução tecnológica para registrar e monitorar ocorrências de alagamento em áreas urbanas, combinando dados da comunidade, promovendo prevenção e resposta rápida. O usuário pode marcar em tempo real uma área de alagamento. Abaixo algumas imagens que ilustram o aplicativo:
+Este projeto tem como objetivo criar uma solução tecnológica para registrar e monitorar ocorrências de alagamento em áreas urbanas, combinando dados da comunidade, promovendo prevenção e resposta rápida. O usuário pode marcar em tempo real uma área de alagamento. O app conta também com a função de "Alertas" que podem ser emitidos por prefeituras que queiram fazer parceria com o app. Abaixo algumas imagens que ilustram o aplicativo:
 
 ![image](https://github.com/user-attachments/assets/f2ba915e-20d6-4a69-977b-30a5bcf0b11b)
 ![image](https://github.com/user-attachments/assets/a85a241a-10ec-42fd-a975-ca86cf2acae8)
